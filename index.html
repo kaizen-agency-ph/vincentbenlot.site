@@ -15,7 +15,7 @@
 <link rel="icon" type="image/png" href="assets/mono96.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@500;700&display=swap&text=%E3%81%84%E3%81%8A%E3%81%94%E3%81%9B%E3%81%AE%E3%81%BF%E3%82%8C%E3%82%8F%E3%82%A3%E3%82%B5%E3%82%B9%E3%83%83%E3%83%88%E3%83%93%E3%83%95%E3%83%97%E3%83%99%E3%83%AB%E3%83%AD%E3%83%B3%E3%83%B4%E3%83%BB%E3%83%BC%E4%B8%80%E4%B8%89%E4%B8%AD%E4%BA%8C%E4%BB%95%E4%BB%98%E4%BD%9C%E4%BE%9D%E5%88%B6%E5%8B%95%E5%8C%96%E5%8F%97%E5%90%88%E5%91%8A%E5%95%8F%E5%9B%9B%E5%A0%B1%E5%AE%9F%E6%96%AD%E6%A7%8B%E6%AD%B4%E6%B5%81%E7%AF%89%E7%B5%84%E7%B5%8C%E7%B5%A1%E7%B8%BE%E8%87%AA%E8%A8%BA%E9%80%A3%E9%A0%BC" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Sans+JP:wght@500;700&display=swap&text=%E3%81%84%E3%81%8A%E3%81%94%E3%81%9B%E3%81%AE%E3%81%BF%E3%82%8C%E3%82%8F%E3%82%A2%E3%82%A3%E3%82%B5%E3%82%B9%E3%83%83%E3%83%88%E3%83%93%E3%83%95%E3%83%97%E3%83%99%E3%83%AB%E3%83%AC%E3%83%AD%E3%83%B3%E3%83%B4%E3%83%BB%E3%83%BC%E4%B8%80%E4%B8%89%E4%B8%AD%E4%BA%8C%E4%BB%95%E4%BB%98%E4%BD%9C%E4%BE%9D%E5%88%B6%E5%8B%95%E5%8C%96%E5%8F%97%E5%90%88%E5%91%8A%E5%95%8F%E5%9B%9B%E5%A0%B1%E5%AE%9F%E6%96%AD%E6%A7%8B%E6%AD%B4%E6%B5%81%E7%AF%89%E7%B5%84%E7%B5%8C%E7%B5%A1%E7%B8%BE%E8%87%AA%E8%A8%BA%E9%80%A3%E9%A0%BC" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -274,6 +274,37 @@ section{padding-block:var(--sec)}
 .mnav-foot .btn{justify-content:center}
 .mnav-foot .mail{font-family:var(--mono);font-size:13px;color:#b0b0b0;text-align:center;padding-top:6px}
 @media(min-width:861px){.mnav{display:none!important}}
+
+
+/* ===== experience: level-up hero ===== */
+.xp-hero,.xp-thumb{display:none}
+.xp-row:focus-visible{outline:2px solid var(--orange);outline-offset:4px}
+.xp-row.is-active h3{color:var(--orange-text)}
+.xp-row.is-active{padding-left:10px}
+@media (hover:hover) and (min-width:900px){
+  .xp-layout{display:grid;grid-template-columns:clamp(220px,22vw,290px) 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+  .xp-hero{display:block;position:sticky;top:100px}
+}
+.xp-stage{position:relative;aspect-ratio:1/1;border:1px solid var(--line);border-radius:14px;overflow:hidden;background-color:var(--gray-bg);background-image:linear-gradient(#e8e8e8 1px,transparent 1px),linear-gradient(90deg,#e8e8e8 1px,transparent 1px);background-size:16px 16px}
+.xp-stage .spr{position:absolute;left:4%;top:6%;width:92%;height:92%;object-fit:contain;opacity:0}
+.xp-hint{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--gray-mid)}
+.lvup{position:absolute;top:12px;left:0;right:0;margin-inline:auto;width:max-content;background:var(--ink);color:var(--white);font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:5px 10px;border-radius:999px;white-space:nowrap;opacity:0}
+.lvup .jp{color:var(--orange);font-size:10px;margin-left:3px;letter-spacing:.06em}
+.xp-meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--gray-mid);text-transform:uppercase;letter-spacing:.1em}
+.xp-meta .lv b{font-family:var(--sans);font-weight:900;font-stretch:125%;font-size:1.7rem;color:var(--ink);letter-spacing:-.02em;margin-left:2px}
+.xpbar{height:12px;border:1.5px solid var(--ink);border-radius:3px;margin-top:10px;padding:2px}
+.xpbar i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--orange) 0 10px,transparent 10px 13px);transform-origin:0 50%;transform:scaleX(0)}
+
+/* no hover (phones, tablets): each role carries its own little hero */
+@media not all and (hover:hover) and (min-width:900px){
+  .xp-thumb{display:block;width:56px;height:56px;object-fit:contain;align-self:center}
+  .xp-row{grid-template-columns:56px 150px 1fr auto;align-items:center}
+}
+@media (max-width:720px){
+  .xp-row{grid-template-columns:56px 1fr auto;gap:2px 14px}
+  .xp-row .xp-thumb{grid-row:1/3}
+  .xp-row .d{grid-column:2/-1}
+}
 
 /* ===== JP edition ===== */
 :root{--jp:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--dela:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif}
@@ -536,13 +567,29 @@ section>.wrap{position:relative;z-index:1}
       </div>
       <p class="lede" data-reveal>From web QA and VBA to marketing. The engineer part stuck.</p>
     </div>
+    <div class="xp-layout">
+    <aside class="xp-hero" aria-hidden="true">
+      <div class="xp-stage">
+        <img class="spr" data-lv="1" src="assets/hero-lv1.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+        <img class="spr" data-lv="2" src="assets/hero-lv2.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+        <img class="spr" data-lv="3" src="assets/hero-lv3.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+        <img class="spr" data-lv="4" src="assets/hero-lv4.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+        <img class="spr" data-lv="5" src="assets/hero-lv5.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+        <img class="spr" data-lv="6" src="assets/hero-lv6.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+        <div class="xp-hint"><span>Hover a role<br>to level up →</span></div>
+        <div class="lvup">LEVEL UP! <span class="jp" lang="ja">レベルアップ</span></div>
+      </div>
+      <div class="xp-meta"><span class="lv">LV.<b>–</b></span><span class="cls">—</span></div>
+      <div class="xpbar"><i></i></div>
+    </aside>
     <div class="xp" data-reveal-group>
-      <div class="xp-row now" data-reveal><span class="d">2024 — now</span><div><h3>Digital Marketing Specialist</h3><div class="at">US-based business services group</div></div><span class="t">Full-time</span></div>
-      <div class="xp-row" data-reveal><span class="d">2021 — 2025</span><div><h3>Digital Marketing Specialist</h3><div class="at">International clients via Upwork</div></div><span class="t">Freelance</span></div>
-      <div class="xp-row" data-reveal><span class="d">2023</span><div><h3>Outreach Specialist</h3><div class="at">V3locity Media · Dubai</div></div><span class="t">Remote</span></div>
-      <div class="xp-row" data-reveal><span class="d">2021 — 2022</span><div><h3>Virtual Assistant</h3><div class="at">Outsource Access</div></div><span class="t">Remote</span></div>
-      <div class="xp-row" data-reveal><span class="d">2020 — 2021</span><div><h3>Submission Agent</h3><div class="at">BrightLocal</div></div><span class="t">Remote</span></div>
-      <div class="xp-row" data-reveal><span class="d">2018 — 2019</span><div><h3>IT Specialist / VBA · Website QA</h3><div class="at">Accolade Resources · Fligno Software</div></div><span class="t">On-site</span></div>
+      <div class="xp-row now" data-reveal data-lv="6" tabindex="0"><img class="xp-thumb" src="assets/hero-lv6-sm.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span class="d">2024 — now</span><div><h3>Digital Marketing Specialist</h3><div class="at">US-based business services group</div></div><span class="t">Full-time</span></div>
+      <div class="xp-row" data-reveal data-lv="5" tabindex="0"><img class="xp-thumb" src="assets/hero-lv5-sm.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span class="d">2021 — 2025</span><div><h3>Digital Marketing Specialist</h3><div class="at">International clients via Upwork</div></div><span class="t">Freelance</span></div>
+      <div class="xp-row" data-reveal data-lv="4" tabindex="0"><img class="xp-thumb" src="assets/hero-lv4-sm.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span class="d">2023</span><div><h3>Outreach Specialist</h3><div class="at">V3locity Media · Dubai</div></div><span class="t">Remote</span></div>
+      <div class="xp-row" data-reveal data-lv="3" tabindex="0"><img class="xp-thumb" src="assets/hero-lv3-sm.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span class="d">2021 — 2022</span><div><h3>Virtual Assistant</h3><div class="at">Outsource Access</div></div><span class="t">Remote</span></div>
+      <div class="xp-row" data-reveal data-lv="2" tabindex="0"><img class="xp-thumb" src="assets/hero-lv2-sm.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span class="d">2020 — 2021</span><div><h3>Submission Agent</h3><div class="at">BrightLocal</div></div><span class="t">Remote</span></div>
+      <div class="xp-row" data-reveal data-lv="1" tabindex="0"><img class="xp-thumb" src="assets/hero-lv1-sm.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span class="d">2018 — 2019</span><div><h3>IT Specialist / VBA · Website QA</h3><div class="at">Accolade Resources · Fligno Software</div></div><span class="t">On-site</span></div>
+    </div>
     </div>
   </div>
 </section>
@@ -696,6 +743,61 @@ track.innerHTML = [...TOOLS, ...TOOLS].map(t => `<span class="tag">${t}</span><s
   menu.addEventListener('click', e => { if (e.target.closest('a')) hide(false); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && open) hide(true); });
   matchMedia('(min-width: 861px)').addEventListener('change', e => { if (e.matches) hide(false); });
+})();
+
+/* experience: hero levels up as you hover each role */
+(() => {
+  const panel = document.querySelector('.xp-hero'), list = document.querySelector('.xp');
+  if (!panel || !list) return;
+  const canHover = matchMedia('(hover: hover) and (min-width: 900px)');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches || typeof anime === 'undefined';
+  const sprites = [...panel.querySelectorAll('.spr')];
+  const hint = panel.querySelector('.xp-hint'), up = panel.querySelector('.lvup');
+  const lvNum = panel.querySelector('.lv b'), cls = panel.querySelector('.cls'), bar = panel.querySelector('.xpbar i');
+  const NAMES = ['', 'Apprentice', 'Scout', 'Scribe', 'Messenger', 'Knight', 'Legend'];
+  let cur = 0, leaveTimer;
+
+  const fade = (el, to, ms) => { if (calm) { el.style.opacity = to; return; } anime.remove(el); anime({targets: el, opacity: to, duration: ms, easing: 'linear'}); };
+  const setBar = v => { if (calm) { bar.style.transform = `scaleX(${v})`; return; } anime.remove(bar); anime({targets: bar, scaleX: v, duration: 520, easing: 'steps(8)'}); };
+  const mark = row => list.querySelectorAll('.xp-row').forEach(r => r.classList.toggle('is-active', r === row));
+
+  function show(lv, row){
+    clearTimeout(leaveTimer);
+    mark(row);
+    if (lv === cur) return;
+    const prev = cur; cur = lv;
+    lvNum.textContent = lv; cls.textContent = NAMES[lv];
+    fade(hint, 0, 120);
+    sprites.forEach(sp => {
+      if (+sp.dataset.lv === lv) {
+        if (calm) { sp.style.opacity = 1; return; }
+        anime.remove(sp);
+        anime({targets: sp, opacity: [0, 1], translateY: [18, 0], scale: [.9, 1], duration: 420, easing: 'steps(6)'});
+      } else if (parseFloat(getComputedStyle(sp).opacity) > 0) fade(sp, 0, 140);
+    });
+    setBar(lv / 6);
+    if (!calm && prev > 0 && lv > prev) {
+      anime.remove(up);
+      anime({targets: up, opacity: [0, 1, 1, 0], translateY: [8, -4], duration: 1100, easing: 'linear'});
+    }
+  }
+  function hide(){
+    clearTimeout(leaveTimer);
+    leaveTimer = setTimeout(() => {
+      cur = 0; mark(null);
+      sprites.forEach(sp => fade(sp, 0, 260));
+      fade(hint, 1, 300);
+      lvNum.textContent = '–'; cls.textContent = '—';
+      setBar(0);
+    }, 140);
+  }
+  list.querySelectorAll('.xp-row').forEach(row => {
+    const lv = +row.dataset.lv;
+    row.addEventListener('pointerenter', e => { if (canHover.matches && e.pointerType !== 'touch') show(lv, row); });
+    row.addEventListener('focus', () => show(lv, row));
+  });
+  list.addEventListener('pointerleave', () => { if (canHover.matches) hide(); });
+  list.addEventListener('focusout', e => { if (!list.contains(e.relatedTarget)) hide(); });
 })();
 
 /* nav border on scroll */
