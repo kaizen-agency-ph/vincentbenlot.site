@@ -340,9 +340,9 @@ section{padding-block:var(--sec)}
 .q-flagpole{position:absolute;left:40px;bottom:56px;width:4px;height:90px;background:var(--ink)}
 .q-flagpole span{position:absolute;left:4px;top:0;background:var(--ink);color:var(--white);font:500 10px var(--mono);letter-spacing:.12em;padding:4px 8px}
 .player{position:absolute;left:0;bottom:53px;width:var(--fw);height:var(--fh);margin-left:calc(var(--fw) / -2);z-index:3;will-change:transform}
-.player .spr{width:100%;height:100%;background:url("assets/walk.webp") 0 0 / calc(var(--fw) * 6) var(--fh) no-repeat}
-.q-view{--fw:68px;--fh:128px}
-@media(max-width:600px){.q-view{--fw:58px;--fh:110px}}
+.player .spr{width:100%;height:100%;background:url("assets/walk.webp") 0 0 / calc(var(--fw) * 8) var(--fh) no-repeat}
+.q-view{--fw:71px;--fh:128px}
+@media(max-width:600px){.q-view{--fw:61px;--fh:110px}}
 .q-lvup{position:absolute;left:50%;bottom:calc(100% + 8px);width:max-content;margin-left:-60px;background:var(--ink);color:var(--white);font:500 11px var(--mono);letter-spacing:.08em;padding:5px 10px;border-radius:999px;opacity:0;pointer-events:none}
 .q-lvup .jp{color:var(--orange);font-size:10px;margin-left:3px}
 .q-st{position:absolute;bottom:56px;width:150px;margin-left:-75px;display:flex;flex-direction:column;align-items:center;cursor:pointer}
@@ -400,7 +400,7 @@ section{padding-block:var(--sec)}
 .q-pad .q-next{background:var(--orange);border-color:var(--ink);font-size:13px}
 .q-pad .q-skip{font-size:13px}
 /* short landscape phones: fit the whole game under the nav */
-@media (orientation:landscape) and (max-height:520px){.q-view{height:max(230px,calc(100svh - 96px));--fw:51px;--fh:96px}}
+@media (orientation:landscape) and (max-height:520px){.q-view{height:max(230px,calc(100svh - 96px));--fw:53px;--fh:96px}}
 
 /* ===== JP edition ===== */
 :root{--jp:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--dela:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif}
@@ -957,6 +957,7 @@ track.innerHTML = [...TOOLS, ...TOOLS].map(t => `<span class="tag">${t}</span><s
   let x = 120, dir = 1, animT = 0, target = null, padDir = 0, open = -1, near = -1, running = false, inView = false, started = false, last = 0;
   const keys = {l: false, r: false}, visited = new Set();
   const FW = () => parseFloat(getComputedStyle(view).getPropertyValue('--fw'));
+  const WALK_FRAMES = 8, WALK_FPS = 12, IDLE_FRAME = 2;   // walk.webp: stride, push, pass, knee-up ×2; frame 2 = standing
   const SPEED = () => view.clientWidth < 600 ? 235 : 250;
 
   function hud(){
@@ -1010,8 +1011,8 @@ track.innerHTML = [...TOOLS, ...TOOLS].map(t => `<span class="tag">${t}</span><s
     if (target !== null) { const d = target - x; if (Math.abs(d) < 6) { target = null; input = 0; } else input = Math.sign(d); }
     x = Math.max(60, Math.min(worldW - 80, x + input * SPEED() * (target !== null ? 1.8 : 1) * dt));   // ▶▶ / tap-a-sign dashes
     const fw = FW();
-    if (input) { dir = input; animT += dt; spr.style.backgroundPosition = `${-Math.floor(animT * 11) % 6 * fw}px 0`; }
-    else { animT = 0; spr.style.backgroundPosition = `${-1 * fw}px 0`; }
+    if (input) { dir = input; animT += dt; spr.style.backgroundPosition = `${-(Math.floor(animT * WALK_FPS) % WALK_FRAMES) * fw}px 0`; }
+    else { animT = 0; spr.style.backgroundPosition = `${-IDLE_FRAME * fw}px 0`; }
     spr.style.transform = dir < 0 ? 'scaleX(-1)' : '';
     player.style.transform = `translate3d(${x}px,0,0)`;
     const vw = view.clientWidth, cam = Math.max(0, Math.min(worldW - vw, x - vw * .38));
@@ -1080,7 +1081,7 @@ track.innerHTML = [...TOOLS, ...TOOLS].map(t => `<span class="tag">${t}</span><s
   let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(layout, 120); }).observe(view);
   hud();
   player.style.transform = `translate3d(${x}px,0,0)`;
-  spr.style.backgroundPosition = `${-FW()}px 0`;
+  spr.style.backgroundPosition = `${-IDLE_FRAME * FW()}px 0`;
 })();
 
 /* nav border on scroll */
