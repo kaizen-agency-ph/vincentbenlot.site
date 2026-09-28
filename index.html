@@ -368,11 +368,17 @@ section{padding-block:var(--sec)}
 .q-start kbd{font:500 11px var(--mono);border:1px solid var(--ink);border-bottom-width:3px;border-radius:4px;padding:1px 6px;background:var(--white)}
 .k-touch{display:none}
 @media (hover:none){.k-desk{display:none}.k-touch{display:inline}}
-.q-pad{position:absolute;right:12px;bottom:6px;z-index:5;display:none;gap:8px}
+.q-pad{position:absolute;right:12px;bottom:6px;z-index:5;display:flex;gap:8px}
+.q-pad .q-skip em{font:500 12px var(--mono);font-style:normal;letter-spacing:.04em}
+.q-pad .q-skip{display:none;align-items:center;justify-content:center;gap:6px;width:auto;padding:0 12px;letter-spacing:-1px}
+.q-pad .q-skip:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
 .q-pad button{width:52px;height:44px;border:2px solid var(--ink);border-radius:8px;background:var(--white);font-size:16px;color:var(--ink);touch-action:none;-webkit-user-select:none;user-select:none}
 .q-pad button:active{background:var(--ink);color:var(--white)}
-@media (hover:none),(max-width:899px){.q-pad{display:flex}}
-@media (hover:none),(max-width:899px){.quest.overlay article.q-card{bottom:62px}}   /* keep the touch pad uncovered */
+/* desktop: keyboard walks, the pad only carries the labelled skip buttons */
+@media (hover:hover) and (min-width:900px){.q-pad .q-hold{display:none}.q-pad .q-skip{display:inline-flex}}
+/* touch: hold-to-walk arrows plus compact skip buttons (labels hidden to save room) */
+@media (hover:none),(max-width:899px){.q-pad .q-skip{display:inline-flex;width:52px;padding:0}.q-pad .q-skip em{display:none}.q-pad .q-next{width:60px}}
+.quest.overlay article.q-card{bottom:62px}   /* card always ends above the pad */
 .q-card{position:relative;margin-top:12px;z-index:5;display:flex;flex-direction:column;background:var(--white);border:2px solid var(--ink);border-radius:12px;padding:16px 18px;overflow:auto}
 .quest.overlay .q-card{position:absolute;right:14px;top:14px;bottom:14px;width:min(360px,44%);margin:0;min-height:0!important}
 .q-empty{flex:1;display:grid;place-content:center;justify-items:center;gap:6px;text-align:center;font:400 12px var(--mono);color:var(--gray-mid)}
@@ -391,7 +397,8 @@ section{padding-block:var(--sec)}
 .q-card .nav-row a{color:var(--ink)}
 .q-view,.q-pad button,.q-st{-webkit-touch-callout:none}
 .q-view{scroll-margin-top:84px}
-.q-pad .q-next{width:60px;background:var(--orange);border-color:var(--ink);font-size:13px;letter-spacing:-2px}
+.q-pad .q-next{background:var(--orange);border-color:var(--ink);font-size:13px}
+.q-pad .q-skip{font-size:13px}
 /* short landscape phones: fit the whole game under the nav */
 @media (orientation:landscape) and (max-height:520px){.q-view{height:max(230px,calc(100svh - 96px));--fw:51px;--fh:96px}}
 
@@ -671,9 +678,9 @@ section>.wrap{position:relative;z-index:1}
         <div class="q-hud" aria-hidden="true"><span class="q-lv">LV.<b id="qLv">0</b></span><span class="q-cls" id="qCls">Newbie</span><span class="q-xp"><i id="qXp"></i></span><span class="q-count" id="qCount">0/6</span></div>
         <div class="q-start" id="qStart">
           <button type="button" class="btn btn-primary" id="qGo">▶ Press to play</button>
-          <p id="qHelp"><span class="k-desk">Walk with <kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd> · reach a sign to open it</span><span class="k-touch">Hold ◀ ▶ to walk, or tap ▶▶ for the next sign</span></p>
+          <p id="qHelp"><span class="k-desk">Walk with <kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd> · reach a sign to open it · <kbd>◀◀</kbd> <kbd>▶▶</kbd> skip between signs</span><span class="k-touch">Hold ◀ ▶ to walk, or tap ◀◀ ▶▶ to skip between signs</span></p>
         </div>
-        <div class="q-pad" aria-hidden="true"><button type="button" id="qL" tabindex="-1">◀</button><button type="button" id="qR" tabindex="-1">▶</button><button type="button" class="q-next" id="qN" tabindex="-1">▶▶</button></div>
+        <div class="q-pad"><button type="button" class="q-skip" id="qP" aria-label="Previous sign"><span aria-hidden="true">◀◀</span><em>Prev</em></button><button type="button" class="q-hold" id="qL" tabindex="-1" aria-hidden="true">◀</button><button type="button" class="q-hold" id="qR" tabindex="-1" aria-hidden="true">▶</button><button type="button" class="q-skip q-next" id="qN" aria-label="Next sign"><em>Next</em><span aria-hidden="true">▶▶</span></button></div>
       </div>
       <article class="q-card" id="qCard" aria-live="polite" hidden></article>
     </div>
@@ -973,6 +980,7 @@ track.innerHTML = [...TOOLS, ...TOOLS].map(t => `<span class="tag">${t}</span><s
     probe.remove(); card.style.minHeight = max + 'px';
   }
   function nextIndex(){ const k = stX.findIndex(sx => sx > x + 40); return k < 0 ? STAGES.length - 1 : k; }
+  function prevIndex(){ let k = 0; stX.forEach((sx, i) => { if (sx < x - 40) k = i; }); return k; }
   function idleCard(){
     if (overlay) { card.hidden = true; return; }
     const k = nextIndex(), st = STAGES[k], done = visited.size === STAGES.length;
@@ -1046,7 +1054,11 @@ track.innerHTML = [...TOOLS, ...TOOLS].map(t => `<span class="tag">${t}</span><s
     const stop = () => { if (padDir === d) padDir = 0; };
     b.addEventListener('pointerup', stop); b.addEventListener('pointercancel', stop); b.addEventListener('lostpointercapture', stop);
   });
-  $('qN').addEventListener('click', () => { begin(false); target = stX[nextIndex()]; });
+  const skip = (btn, pick) => $(btn).addEventListener('click', e => {
+    begin(false); target = stX[pick()];
+    if (e.detail) view.focus({preventScroll: true});   // mouse click: hand focus back so arrow keys keep walking
+  });
+  skip('qN', nextIndex); skip('qP', prevIndex);
   view.addEventListener('contextmenu', e => { if (e.target.closest('.q-pad, .q-st')) e.preventDefault(); });
   /* tap or click a signpost: walk there */
   world.addEventListener('click', e => { const st = e.target.closest('.q-st'); if (!st) return; begin(false); target = stX[+st.dataset.i]; });
