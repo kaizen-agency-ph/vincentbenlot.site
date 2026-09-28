@@ -1,6 +1,8 @@
 # vincentbenlot.site
 
-Vince Benlot's portfolio. `index.html` is the whole site (images are embedded).
+Vince Benlot's portfolio (JP edition). `index.html` plus images in `assets/`.
+Built from `~/Claude Projects/Vince Website/_source/` — edit there and rebuild with
+`python3 make_jp.py && python3 mobile_jp.py && python3 build2.py template-jp.html <this folder> --files`.
 Hosted free on GitHub Pages at **https://vincentbenlot.site**.
 
 ## Updating
