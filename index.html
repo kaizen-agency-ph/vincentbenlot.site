@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Vince Benlot — 仕組み</title>
+<title>Vince Benlot — 仕組み · Quest</title>
 <meta name="description" content="Digital marketer who builds like an engineer. Campaigns, AI automation, local SEO — and websites that do real work.">
 <meta property="og:title" content="Vince Benlot — Marketing that runs like a system">
 <meta property="og:description" content="Campaigns, AI automation, local SEO and websites. Remote from the Philippines, working with teams in the US, UK, Ireland, Australia and the UAE.">
@@ -306,6 +306,77 @@ section{padding-block:var(--sec)}
   .xp-row .d{grid-column:2/-1}
 }
 
+
+/* ===== experience quest (game edition) ===== */
+.mode-switch{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--white);margin-bottom:18px}
+.mode-switch button{min-height:44px;padding:0 16px;border:0;border-radius:9px;background:transparent;font-family:var(--mono);font-size:13px;color:var(--gray-text);cursor:pointer}
+.mode-switch button[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.quest{position:relative}
+.q-view{position:relative;height:clamp(300px,33vw,450px);border:2px solid var(--ink);border-radius:16px;overflow:hidden;background:#f4f4f4;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.q-view:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.q-far{position:absolute;left:0;right:0;top:0;bottom:54px;background:url("assets/quest-bg.webp") 0 100% / auto 100% repeat-x;image-rendering:pixelated}
+.q-world{position:absolute;left:0;top:0;bottom:0;will-change:transform}
+.q-ground{position:absolute;left:0;right:0;bottom:0;height:56px;border-top:3px solid var(--ink);background:
+  linear-gradient(#bdbdbd 0 8px,transparent 8px),
+  repeating-linear-gradient(90deg,#d4d4d4 0 24px,#c9c9c9 24px 48px)}
+.q-flagpole{position:absolute;left:40px;bottom:56px;width:4px;height:90px;background:var(--ink)}
+.q-flagpole span{position:absolute;left:4px;top:0;background:var(--ink);color:var(--white);font:500 10px var(--mono);letter-spacing:.12em;padding:4px 8px}
+.player{position:absolute;left:0;bottom:53px;width:var(--fw);height:var(--fh);margin-left:calc(var(--fw) / -2);z-index:3;will-change:transform}
+.player .spr{width:100%;height:100%;background:url("assets/walk.webp") 0 0 / calc(var(--fw) * 6) var(--fh) no-repeat}
+.q-view{--fw:68px;--fh:128px}
+@media(max-width:600px){.q-view{--fw:58px;--fh:110px}}
+.q-lvup{position:absolute;left:50%;bottom:calc(100% + 8px);width:max-content;margin-left:-60px;background:var(--ink);color:var(--white);font:500 11px var(--mono);letter-spacing:.08em;padding:5px 10px;border-radius:999px;opacity:0;pointer-events:none}
+.q-lvup .jp{color:var(--orange);font-size:10px;margin-left:3px}
+.q-st{position:absolute;bottom:56px;width:150px;margin-left:-75px;display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.q-st img{width:64px;height:64px;object-fit:contain;filter:grayscale(1);opacity:.35;transition:opacity .3s,filter .3s;margin-bottom:4px}
+.q-st.done img{filter:none;opacity:1}
+.q-sign{position:relative;background:var(--white);border:2px solid var(--ink);border-radius:6px;padding:6px 10px 5px;text-align:center;box-shadow:3px 3px 0 var(--ink);transition:border-color .2s,box-shadow .2s}
+.q-sign b{display:block;font:500 10px var(--mono);letter-spacing:.12em;color:var(--orange-text)}
+.q-sign span{display:block;font-weight:800;font-stretch:112%;font-size:14px;line-height:1.15;white-space:nowrap}
+.q-sign small{display:block;font:400 10px var(--mono);color:var(--gray-mid);margin-top:1px}
+.q-st.near .q-sign{border-color:var(--orange);box-shadow:3px 3px 0 var(--orange)}
+.q-post{width:8px;height:40px;background:var(--ink);position:relative}
+.q-post::after{content:"";position:absolute;left:8px;top:4px;width:0;height:14px;background:var(--orange);transition:width .35s steps(4)}
+.q-st.done .q-post::after{width:18px}
+.q-hud{position:absolute;left:12px;top:12px;display:flex;align-items:center;gap:10px;background:var(--white);border:2px solid var(--ink);border-radius:8px;padding:6px 10px;font:500 11px var(--mono);letter-spacing:.06em;z-index:4}
+.q-lv b{font-family:var(--sans);font-weight:900;font-stretch:125%;font-size:15px;margin-left:1px}
+.q-cls{color:var(--gray-mid);text-transform:uppercase}
+.q-xp{width:70px;height:10px;border:1.5px solid var(--ink);border-radius:2px;padding:1px}
+.q-xp i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--orange) 0 6px,transparent 6px 8px);transform-origin:0 50%;transform:scaleX(0);transition:transform .5s steps(6)}
+.q-count{color:var(--gray-mid)}
+@media(max-width:600px){.q-cls,.q-count{display:none}}
+.q-start{position:absolute;inset:0;z-index:6;display:grid;place-content:center;justify-items:center;gap:12px;background:rgba(244,244,244,.72);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);text-align:center;padding:16px}
+.q-start p{font:400 12px var(--mono);color:var(--gray-text);max-width:34ch}
+.q-start kbd{font:500 11px var(--mono);border:1px solid var(--ink);border-bottom-width:3px;border-radius:4px;padding:1px 6px;background:var(--white)}
+.k-touch{display:none}
+@media (hover:none){.k-desk{display:none}.k-touch{display:inline}}
+.q-pad{position:absolute;right:12px;bottom:6px;z-index:5;display:none;gap:8px}
+.q-pad button{width:52px;height:44px;border:2px solid var(--ink);border-radius:8px;background:var(--white);font-size:16px;color:var(--ink);touch-action:none;-webkit-user-select:none;user-select:none}
+.q-pad button:active{background:var(--ink);color:var(--white)}
+@media (hover:none),(max-width:899px){.q-pad{display:flex}}
+@media (hover:none),(max-width:899px){.quest.overlay article.q-card{bottom:62px}}   /* keep the touch pad uncovered */
+.q-card{position:relative;margin-top:12px;z-index:5;display:flex;flex-direction:column;background:var(--white);border:2px solid var(--ink);border-radius:12px;padding:16px 18px;overflow:auto}
+.quest.overlay .q-card{position:absolute;right:14px;top:14px;bottom:14px;width:min(360px,44%);margin:0;min-height:0!important}
+.q-empty{flex:1;display:grid;place-content:center;justify-items:center;gap:6px;text-align:center;font:400 12px var(--mono);color:var(--gray-mid)}
+.q-empty img{width:56px;height:56px;object-fit:contain;filter:grayscale(1);opacity:.4}
+.q-empty b{font:500 12px var(--mono);letter-spacing:.1em;color:var(--ink);text-transform:uppercase}
+.q-card .top{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.q-card .top img{width:64px;height:64px;object-fit:contain;flex:none}
+.q-card .lvtag{font:500 11px var(--mono);letter-spacing:.1em;color:var(--orange-text);text-transform:uppercase}
+.q-card .yrs{display:block;font:400 12px var(--mono);color:var(--gray-mid)}
+.q-card h3{font-size:1.15rem;margin-top:4px}
+.q-card .org{color:var(--gray-text);font-size:14px;margin-top:2px}
+.q-card ul{list-style:none;display:grid;gap:7px;margin:12px 0;font-size:14px;color:var(--gray-text)}
+.q-card li{display:flex;gap:10px}
+.q-card li::before{content:"";width:6px;height:6px;background:var(--orange);margin-top:8px;flex:none}
+.q-card .nav-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;font:400 12px var(--mono);color:var(--gray-mid)}
+.q-card .nav-row a{color:var(--ink)}
+.q-view,.q-pad button,.q-st{-webkit-touch-callout:none}
+.q-view{scroll-margin-top:84px}
+.q-pad .q-next{width:60px;background:var(--orange);border-color:var(--ink);font-size:13px;letter-spacing:-2px}
+/* short landscape phones: fit the whole game under the nav */
+@media (orientation:landscape) and (max-height:520px){.q-view{height:max(230px,calc(100svh - 96px));--fw:51px;--fh:96px}}
+
 /* ===== JP edition ===== */
 :root{--jp:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--dela:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif}
 .jp{font-family:var(--jp);font-weight:700;letter-spacing:.08em;text-transform:none}
@@ -567,7 +638,28 @@ section>.wrap{position:relative;z-index:1}
       </div>
       <p class="lede" data-reveal>From web QA and VBA to marketing. The engineer part stuck.</p>
     </div>
-    <div class="xp-layout">
+    <div class="mode-switch" role="group" aria-label="How to view my experience" data-reveal>
+      <button type="button" data-mode="play" aria-pressed="true"><span aria-hidden="true">▶</span> Play the quest</button>
+      <button type="button" data-mode="list" aria-pressed="false"><span aria-hidden="true">☰</span> List view</button>
+    </div>
+    <div class="quest" id="quest" role="region" aria-label="Career quest — walk the hero to each job">
+      <div class="q-view" id="qView" tabindex="0" aria-describedby="qHelp">
+        <div class="q-far" id="qFar" aria-hidden="true"></div>
+        <div class="q-world" id="qWorld" aria-hidden="true">
+          <div class="q-ground"></div>
+          <div class="q-flagpole"><span>START</span></div>
+          <div class="player" id="qPlayer"><div class="spr" id="qSpr"></div><div class="q-lvup" id="qLvup">LEVEL UP! <span class="jp" lang="ja">レベルアップ</span></div></div>
+        </div>
+        <div class="q-hud" aria-hidden="true"><span class="q-lv">LV.<b id="qLv">0</b></span><span class="q-cls" id="qCls">Newbie</span><span class="q-xp"><i id="qXp"></i></span><span class="q-count" id="qCount">0/6</span></div>
+        <div class="q-start" id="qStart">
+          <button type="button" class="btn btn-primary" id="qGo">▶ Press to play</button>
+          <p id="qHelp"><span class="k-desk">Walk with <kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd> · reach a sign to open it</span><span class="k-touch">Hold ◀ ▶ to walk, or tap ▶▶ for the next sign</span></p>
+        </div>
+        <div class="q-pad" aria-hidden="true"><button type="button" id="qL" tabindex="-1">◀</button><button type="button" id="qR" tabindex="-1">▶</button><button type="button" class="q-next" id="qN" tabindex="-1">▶▶</button></div>
+      </div>
+      <article class="q-card" id="qCard" aria-live="polite" hidden></article>
+    </div>
+    <div class="xp-layout" id="xpList">
     <aside class="xp-hero" aria-hidden="true">
       <div class="xp-stage">
         <img class="spr" data-lv="1" src="assets/hero-lv1.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
@@ -798,6 +890,167 @@ track.innerHTML = [...TOOLS, ...TOOLS].map(t => `<span class="tag">${t}</span><s
   });
   list.addEventListener('pointerleave', () => { if (canHover.matches) hide(); });
   list.addEventListener('focusout', e => { if (!list.contains(e.relatedTarget)) hide(); });
+})();
+
+/* experience quest: walk the career road */
+(() => {
+  const quest = document.getElementById('quest'); if (!quest) return;
+  const STAGES = [{"lv": 1, "cls": "Apprentice", "sign": "IT & QA", "years": "2018 — 2019", "title": "IT Specialist / VBA · Website QA", "org": "Accolade Resources · Fligno Software (Australian software company)", "bullets": ["Built and maintained VBA applications that automated internal reporting and data processing.", "Tested and validated website builds against design and functional specs before client release."], "tags": ["VBA", "Excel", "Web QA"], "img": "assets/hero-lv1.webp"}, {"lv": 2, "cls": "Scout", "sign": "Local SEO", "years": "2020 — 2021", "title": "Submission Agent", "org": "BrightLocal — local SEO platform", "bullets": ["Built and submitted business citations across local directories, lifting client visibility in local search.", "Audited listing data for NAP consistency across platforms."], "tags": ["Citations", "GBP", "Local SEO"], "img": "assets/hero-lv2.webp"}, {"lv": 3, "cls": "Scribe", "sign": "Assistant", "years": "2021 — 2022", "title": "Virtual Assistant", "org": "Outsource Access — BPO serving 70+ industries", "bullets": ["Managed scheduling, inbox operations and recurring reporting for client accounts.", "Ran research and data projects at high volume without dropping accuracy."], "tags": ["Ops", "Research", "Reporting"], "img": "assets/hero-lv3.webp"}, {"lv": 4, "cls": "Messenger", "sign": "Outreach", "years": "2023", "title": "Outreach Specialist", "org": "V3locity Media — international agency, Dubai", "bullets": ["Built targeted outreach lists and wrote personalised sequences across multiple client accounts.", "Tracked response rates, iterated messaging, and kept CRM pipelines accurate for client-facing teams."], "tags": ["Cold email", "LinkedIn", "CRM"], "img": "assets/hero-lv4.webp"}, {"lv": 5, "cls": "Knight", "sign": "Freelance", "years": "2021 — 2025", "title": "Digital Marketing Specialist", "org": "Freelance via Upwork — international clients", "bullets": ["Scoped, delivered and reported on projects independently, from proposal to final report.", "Kept long-term client relationships through consistent communication and on-time delivery."], "tags": ["Campaigns", "SEO", "Reporting"], "img": "assets/hero-lv5.webp"}, {"lv": 6, "cls": "Legend", "sign": "Marketing", "years": "2024 — now", "title": "Digital Marketing Specialist", "org": "US-based business services group — healthcare & business support brands", "bullets": ["Run digital campaigns across the portfolio, driving lead generation for multiple service brands.", "Build AI-assisted content and automation workflows that shorten campaign turnaround.", "Track performance in GA4 dashboards and turn results into recommendations leadership acts on."], "tags": ["GA4", "AI workflows", "Lead gen"], "img": "assets/hero-lv6.webp"}];
+  const NAMES = ['Newbie', ...STAGES.map(s => s.cls)];
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches || typeof anime === 'undefined';
+  const $ = id => document.getElementById(id);
+  const view = $('qView'), world = $('qWorld'), far = $('qFar'), player = $('qPlayer'), spr = $('qSpr'), card = $('qCard'), start = $('qStart');
+  const list = $('xpList'), switchBtns = [...document.querySelectorAll('.mode-switch button')];
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+
+  /* ---- world layout: tighter road on narrow screens; overlay card when the game is wide ---- */
+  let worldW = 0, overlay = false;
+  const stX = [];
+  STAGES.forEach((st, i) => {
+    const el = document.createElement('div');
+    el.className = 'q-st'; el.dataset.i = i;
+    el.innerHTML = `<img src="${st.img}" alt="" loading="lazy" decoding="async"><div class="q-sign"><b>LV.${st.lv}</b><span>${esc(st.sign)}</span><small>${esc(st.years)}</small></div><div class="q-post"></div>`;
+    world.insertBefore(el, player);
+  });
+  const stations = [...world.querySelectorAll('.q-st')];
+  function layout(){
+    const vw = view.clientWidth, narrow = vw < 600;
+    const GAP = narrow ? 380 : 560, FIRST = narrow ? 250 : 330;
+    overlay = vw >= 700;
+    const END = overlay ? Math.round(vw * .62) + 60 : 260;   // room so the camera never parks the hero under the card
+    const oldW = worldW;
+    worldW = FIRST + GAP * (STAGES.length - 1) + END;
+    world.style.width = worldW + 'px';
+    STAGES.forEach((_, i) => { stX[i] = FIRST + i * GAP; stations[i].style.left = stX[i] + 'px'; });
+    if (oldW) x = x * worldW / oldW;
+    quest.classList.toggle('overlay', overlay);
+    sizeCard();
+    if (open >= 0) { const o = open; open = -1; openCard(o, true); } else idleCard();
+  }
+
+  /* ---- state ---- */
+  let x = 120, dir = 1, animT = 0, target = null, padDir = 0, open = -1, near = -1, running = false, inView = false, started = false, last = 0;
+  const keys = {l: false, r: false}, visited = new Set();
+  const FW = () => parseFloat(getComputedStyle(view).getPropertyValue('--fw'));
+  const SPEED = () => view.clientWidth < 600 ? 235 : 250;
+
+  function hud(){
+    const lv = visited.size ? Math.max(...[...visited].map(i => STAGES[i].lv)) : 0;
+    $('qLv').textContent = lv; $('qCls').textContent = NAMES[lv];
+    $('qXp').style.transform = `scaleX(${visited.size / STAGES.length})`;
+    $('qCount').textContent = `${visited.size}/${STAGES.length}`;
+  }
+  const cardHTML = (st, i) => `<div class="top"><img src="${st.img}" alt="" width="64" height="64"><div><span class="lvtag">LV.${st.lv} · ${esc(st.cls)}</span><span class="yrs">${esc(st.years)}</span></div></div>
+      <h3>${esc(st.title)}</h3><div class="org">${esc(st.org)}</div>
+      <ul>${st.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
+      <div class="tags">${st.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+      <div class="nav-row"><span>${i + 1} / ${STAGES.length}</span><span>${i === STAGES.length - 1 ? '<a href="#contact">Let\'s talk →</a>' : `Keep walking → ${esc(STAGES[i + 1].sign)}`}</span></div>`;
+  /* stacked layout: reserve the tallest card's height so the page never jumps while walking */
+  function sizeCard(){
+    if (overlay) { card.style.minHeight = ''; return; }
+    const probe = card.cloneNode(false); probe.removeAttribute('id'); probe.removeAttribute('aria-live'); probe.hidden = false;
+    probe.style.cssText = `position:absolute;visibility:hidden;left:0;top:0;width:${card.offsetWidth || view.clientWidth}px;min-height:0`;
+    quest.appendChild(probe);
+    let max = 0; STAGES.forEach((st, i) => { probe.innerHTML = cardHTML(st, i); max = Math.max(max, probe.offsetHeight); });
+    probe.remove(); card.style.minHeight = max + 'px';
+  }
+  function nextIndex(){ const k = stX.findIndex(sx => sx > x + 40); return k < 0 ? STAGES.length - 1 : k; }
+  function idleCard(){
+    if (overlay) { card.hidden = true; return; }
+    const k = nextIndex(), st = STAGES[k], done = visited.size === STAGES.length;
+    card.hidden = false;
+    card.innerHTML = done ? `<div class="q-empty"><b>Quest complete</b><span>Walk back to any sign to reread it.</span></div>`
+      : `<div class="q-empty"><img src="${st.img}" alt="" width="56" height="56"><b>Next: LV.${st.lv} · ${esc(st.sign)}</b><span>Hold ▶ or tap ▶▶ to walk there.</span></div>`;
+  }
+  function openCard(i, quiet){
+    if (open === i) return; open = i;
+    const st = STAGES[i], first = !visited.has(i);
+    visited.add(i); stations[i].classList.add('done'); hud();
+    card.innerHTML = cardHTML(st, i);
+    card.hidden = false;
+    if (!calm && !quiet) {
+      anime.remove(card);
+      anime({targets: card, opacity: [0, 1], translateY: [14, 0], scale: [.97, 1], duration: 420, easing: 'steps(5)'});
+      if (first) { const up = $('qLvup'); anime.remove(up); anime({targets: up, opacity: [0, 1, 1, 0], translateY: [6, -8], duration: 1200, easing: 'linear'}); }
+    }
+  }
+  function closeCard(){ if (open < 0) return; open = -1; idleCard(); }
+
+  function frame(t){
+    if (!running) return;
+    const dt = Math.min(50, t - (last || t)) / 1000; last = t;
+    let input = (keys.r ? 1 : 0) - (keys.l ? 1 : 0) || padDir;
+    if (input) target = null;
+    if (target !== null) { const d = target - x; if (Math.abs(d) < 6) { target = null; input = 0; } else input = Math.sign(d); }
+    x = Math.max(60, Math.min(worldW - 80, x + input * SPEED() * (target !== null ? 1.8 : 1) * dt));   // ▶▶ / tap-a-sign dashes
+    const fw = FW();
+    if (input) { dir = input; animT += dt; spr.style.backgroundPosition = `${-Math.floor(animT * 11) % 6 * fw}px 0`; }
+    else { animT = 0; spr.style.backgroundPosition = `${-1 * fw}px 0`; }
+    spr.style.transform = dir < 0 ? 'scaleX(-1)' : '';
+    player.style.transform = `translate3d(${x}px,0,0)`;
+    const vw = view.clientWidth, cam = Math.max(0, Math.min(worldW - vw, x - vw * .38));
+    world.style.transform = `translate3d(${-cam}px,0,0)`;
+    far.style.backgroundPositionX = `${-cam * .3}px`;
+    /* proximity */
+    let n = -1; stX.forEach((sx, i) => { if (Math.abs(x - sx) < 70) n = i; });
+    if (n !== near) { stations.forEach((el, i) => el.classList.toggle('near', i === n)); near = n; }
+    if (n >= 0) openCard(n);
+    else if (open >= 0 && Math.abs(x - stX[open]) > 150) closeCard();
+    requestAnimationFrame(frame);
+  }
+  const shouldRun = () => inView && !document.hidden && !quest.hidden;
+  function sync(){ const want = shouldRun(); if (want && !running) { running = true; last = 0; requestAnimationFrame(frame); } else if (!want) running = false; }
+  new IntersectionObserver(es => { inView = es[0].isIntersecting; sync(); }, {threshold: .05}).observe(view);
+  document.addEventListener('visibilitychange', sync);
+
+  function begin(focus){
+    if (!started) { started = true; if (calm) start.hidden = true; else anime({targets: start, opacity: [1, 0], duration: 250, easing: 'linear', complete: () => start.hidden = true}); }
+    if (focus) view.focus({preventScroll: true});
+    const r = view.getBoundingClientRect(), NAV = 76;   // tuck the whole game just under the sticky nav
+    if (r.top < NAV || r.bottom > innerHeight) scrollTo({top: scrollY + r.top - NAV, behavior: calm ? 'auto' : 'smooth'});
+  }
+  $('qGo').addEventListener('click', () => begin(true));
+
+  /* keys only while the game has focus, so page scrolling keeps working everywhere else */
+  const KEYS = {ArrowLeft: 'l', a: 'l', A: 'l', ArrowRight: 'r', d: 'r', D: 'r'};
+  view.addEventListener('keydown', e => {
+    if (KEYS[e.key]) { keys[KEYS[e.key]] = true; begin(false); e.preventDefault(); }
+    else if ((e.key === 'Enter' || e.key === ' ') && e.target === view) { e.preventDefault(); begin(false); if (near >= 0) openCard(near); }
+    else if (e.key === 'Escape') closeCard();
+  });
+  view.addEventListener('keyup', e => { if (KEYS[e.key]) keys[KEYS[e.key]] = false; });
+  view.addEventListener('blur', () => { keys.l = keys.r = false; });
+
+  /* touch pad: hold to walk */
+  [['qL', -1], ['qR', 1]].forEach(([id, d]) => {
+    const b = $(id);
+    b.addEventListener('pointerdown', e => { e.preventDefault(); b.setPointerCapture(e.pointerId); padDir = d; begin(false); });
+    const stop = () => { if (padDir === d) padDir = 0; };
+    b.addEventListener('pointerup', stop); b.addEventListener('pointercancel', stop); b.addEventListener('lostpointercapture', stop);
+  });
+  $('qN').addEventListener('click', () => { begin(false); target = stX[nextIndex()]; });
+  view.addEventListener('contextmenu', e => { if (e.target.closest('.q-pad, .q-st')) e.preventDefault(); });
+  /* tap or click a signpost: walk there */
+  world.addEventListener('click', e => { const st = e.target.closest('.q-st'); if (!st) return; begin(false); target = stX[+st.dataset.i]; });
+
+  /* play / list toggle (reduced motion starts in list view) */
+  let mode = calm ? 'list' : 'play';
+  try { mode = localStorage.getItem('vb-xp-mode') || mode; } catch (e) {}
+  function setMode(m){
+    mode = m;
+    quest.hidden = m !== 'play'; list.hidden = m === 'play';
+    switchBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+    try { localStorage.setItem('vb-xp-mode', m); } catch (e) {}
+    sync();
+  }
+  switchBtns.forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  setMode(mode);
+  layout();
+  if (document.fonts) document.fonts.ready.then(() => { sizeCard(); if (open < 0) idleCard(); });
+  let rz; new ResizeObserver(() => { clearTimeout(rz); rz = setTimeout(layout, 120); }).observe(view);
+  hud();
+  player.style.transform = `translate3d(${x}px,0,0)`;
+  spr.style.backgroundPosition = `${-FW()}px 0`;
 })();
 
 /* nav border on scroll */
