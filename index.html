@@ -418,7 +418,8 @@ section{padding-block:var(--sec)}
 .calendly-inline-widget{position:relative;z-index:1;min-width:280px;height:660px}
 .book-wait{position:absolute;inset:0;display:grid;place-items:center;font:400 12px var(--mono);color:var(--gray-mid);margin:0}
 .book.loaded .book-wait{display:none}
-@media(max-width:900px){.book{grid-template-columns:1fr}.book-frame{min-height:900px}.calendly-inline-widget{height:900px}}
+.book.loaded .book-frame{min-height:0}   /* once Calendly reports its height, let it size itself */
+@media(max-width:900px){.book{grid-template-columns:1fr}.book-frame{min-height:620px}.calendly-inline-widget{height:620px}}
 
 /* ===== JP edition ===== */
 :root{--jp:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--dela:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif}
