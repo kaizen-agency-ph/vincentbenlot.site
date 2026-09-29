@@ -414,12 +414,12 @@ section{padding-block:var(--sec)}
 .book-bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
 .book-bar i:first-child{background:var(--orange)}
 .book-bar span{font-family:var(--mono);font-size:11px;color:var(--gray-mid);margin-left:10px;background:var(--white);padding:2px 10px;border-radius:5px}
-.book-frame{position:relative;min-height:660px}
-.calendly-inline-widget{position:relative;z-index:1;min-width:280px;height:660px}
+.book-frame{position:relative;min-height:700px}
+.calendly-inline-widget{position:relative;z-index:1;min-width:280px;height:700px}
 .book-wait{position:absolute;inset:0;display:grid;place-items:center;font:400 12px var(--mono);color:var(--gray-mid);margin:0}
 .book.loaded .book-wait{display:none}
-.book.loaded .book-frame{min-height:0}   /* once Calendly reports its height, let it size itself */
-@media(max-width:900px){.book{grid-template-columns:1fr}.book-frame{min-height:620px}.calendly-inline-widget{height:620px}}
+/* fixed heights on purpose: Calendly's page_height message reports ~2px, so data-resize collapses the embed */
+@media(max-width:900px){.book{grid-template-columns:1fr}.book-frame{min-height:760px}.calendly-inline-widget{height:760px}}
 
 /* ===== JP edition ===== */
 :root{--jp:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;--dela:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif}
@@ -783,7 +783,7 @@ section>.wrap{position:relative;z-index:1}
       <div class="book-cal">
         <div class="book-bar" aria-hidden="true"><i></i><i></i><i></i><span>calendly.com/kaizen-agency</span></div>
         <div class="book-frame">
-          <div class="calendly-inline-widget" data-url="https://calendly.com/kaizen-agency/discovery-call-with-vince?hide_gdpr_banner=1&hide_event_type_details=1&background_color=ffffff&text_color=111111&primary_color=e8590c" data-resize="true"></div>
+          <div class="calendly-inline-widget" data-url="https://calendly.com/kaizen-agency/discovery-call-with-vince?hide_gdpr_banner=1&hide_event_type_details=1&background_color=ffffff&text_color=111111&primary_color=e8590c"></div>
           <p class="book-wait" aria-hidden="true">Loading calendar…</p>
         </div>
       </div>
